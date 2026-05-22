@@ -37,3 +37,7 @@ This project is a clean, interactive finance dashboard interface built with **Re
 - Roles are completely mocked via Context switch and do not talk to a backend or handle secure RBAC logic.
 - Adding a transaction without specific forms just utilizes an inline quick-add row when the Admin hits "Add".
 - Recharts dependency was selected due to Recharts producing some of the fastest charting prototypes in React while cleanly matching arbitrary aesthetics.
+
+
+Author
+Dauda Mariam
