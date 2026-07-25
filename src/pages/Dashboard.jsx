@@ -5,6 +5,7 @@ import Chart from "../components/Chart";
 import TransactionTable from "../components/TransactionTable";
 import RoleSwitcher from "../components/RoleSwitcher";
 import Insights from "../components/Insights";
+import BudgetSettings from "../components/BudgetSettings";
 import { Wallet, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 
 const Dashboard = () => {
@@ -69,6 +70,8 @@ const Dashboard = () => {
             type="currency"
           />
         </div>
+
+        <BudgetSettings />
 
         {/* Charts & Insights Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">

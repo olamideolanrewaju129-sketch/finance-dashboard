@@ -43,11 +43,30 @@ export const mockTransactions = [
   }
 ];
 
+export const defaultBudgets = {
+  monthlyTotal: 100000,
+  categories: {
+    Food: 15000,
+    Transport: 10000,
+    Subscriptions: 8000,
+    Groceries: 25000,
+  },
+};
+
 export const initializeData = () => {
   const stored = localStorage.getItem("dashboard_transactions");
   if (!stored) {
     localStorage.setItem("dashboard_transactions", JSON.stringify(mockTransactions));
     return mockTransactions;
+  }
+  return JSON.parse(stored);
+};
+
+export const initializeBudgets = () => {
+  const stored = localStorage.getItem("dashboard_budgets");
+  if (!stored) {
+    localStorage.setItem("dashboard_budgets", JSON.stringify(defaultBudgets));
+    return defaultBudgets;
   }
   return JSON.parse(stored);
 };

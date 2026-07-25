@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { initializeData } from "../data/mockData";
+import { initializeData, initializeBudgets } from "../data/mockData";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
+  const [budgets, setBudgets] = useState({ monthlyTotal: 0, categories: {} });
   const [role, setRole] = useState("viewer"); // 'viewer' or 'admin'
   const [theme, setTheme] = useState("light");
 
@@ -12,6 +13,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const data = initializeData();
     setTransactions(data);
+    setBudgets(initializeBudgets());
     
     // Load theme setting
     const savedTheme = localStorage.getItem("dashboard_theme") || "light";
@@ -29,6 +31,12 @@ export const AppProvider = ({ children }) => {
       localStorage.setItem("dashboard_transactions", JSON.stringify(transactions));
     }
   }, [transactions]);
+
+  useEffect(() => {
+    if (budgets.monthlyTotal > 0) {
+      localStorage.setItem("dashboard_budgets", JSON.stringify(budgets));
+    }
+  }, [budgets]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -49,16 +57,22 @@ export const AppProvider = ({ children }) => {
     setTransactions((prev) => prev.filter((t) => t.id !== id));
   };
 
+  const updateBudgets = (newBudgets) => {
+    setBudgets(newBudgets);
+  };
+
   return (
     <AppContext.Provider
       value={{
         transactions,
+        budgets,
         role,
         setRole,
         theme,
         toggleTheme,
         addTransaction,
         deleteTransaction,
+        updateBudgets,
       }}
     >
       {children}
