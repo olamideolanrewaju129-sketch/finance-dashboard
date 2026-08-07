@@ -63,6 +63,26 @@ const Auth = () => {
     setPassword('');
   };
 
+  const smallDots = Array.from({ length: 36 }).map((_, i) => {
+    const size = 3 + (i % 6); // 3-8px
+    const top = Math.floor(Math.random() * 80) + 5; // 5% - 85%
+    const left = Math.floor(Math.random() * 80) + 5; // 5% - 85%
+    const anim = i % 3 === 0 ? 'animate-float-slow' : i % 3 === 1 ? 'animate-float-medium' : 'animate-float-fast';
+    return (
+      <div
+        key={`dot-${i}`}
+        className={`absolute rounded-full bg-white opacity-30 ${anim}`}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          top: `${top}%`,
+          left: `${left}%`,
+          animationDelay: `${(i % 6) * 0.25}s`,
+        }}
+      />
+    );
+  });
+
   return (
     <div className="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Animated gradient background */}
@@ -75,21 +95,7 @@ const Auth = () => {
         <div className="animate-float-fast absolute bottom-[15%] left-[30%] w-52 h-52 rounded-full bg-indigo-400 opacity-20 blur-3xl" />
         <div className="animate-float-slow animation-delay-300 absolute top-[30%] right-[35%] w-40 h-40 rounded-full bg-cyan-400 opacity-15 blur-2xl" />
         {/* Small floating dots */}
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full bg-white opacity-30 ${
-              i % 3 === 0 ? 'animate-float-slow' : i % 3 === 1 ? 'animate-float-medium' : 'animate-float-fast'
-            }`}
-            style={{
-              width: `${6 + i * 3}px`,
-              height: `${6 + i * 3}px`,
-              top: `${15 + i * 13}%`,
-              left: `${10 + i * 14}%`,
-              animationDelay: `${i * 0.8}s`,
-            }}
-          />
-        ))}
+        {smallDots}
       </div>
 
       {/* Auth Card */}

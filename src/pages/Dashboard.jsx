@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
+import { useAuth } from "../context/AuthContext";
 import SummaryCard from "../components/SummaryCard";
 import Chart from "../components/Chart";
 import TransactionTable from "../components/TransactionTable";
@@ -9,6 +10,14 @@ import BudgetSettings from "../components/BudgetSettings";
 import { Wallet, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 
 const Dashboard = () => {
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      window.location.replace('/');
+    }
+  }, [loading, user]);
+
   const { transactions } = useAppContext();
 
   const income = transactions
