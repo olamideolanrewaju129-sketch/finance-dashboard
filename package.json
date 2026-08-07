@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify:budget": "node scripts/verify-budget-validation.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
     "clsx": "^2.1.1",
     "lucide-react": "^1.7.0",
     "react": "^19.2.4",
