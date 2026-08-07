@@ -15,7 +15,7 @@ const emptyErrors = () => ({
 });
 
 const BudgetSettings = () => {
-  const { budgets, updateBudgets, transactions, role } = useAppContext();
+  const { budgets, updateBudgets, transactions } = useAppContext();
   const formId = useId();
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState(null);
@@ -130,18 +130,16 @@ const BudgetSettings = () => {
           </div>
         </div>
 
-        {role === "admin" && (
-          <button
-            type="button"
-            onClick={() => (isOpen ? setIsOpen(false) : openForm())}
-            aria-expanded={isOpen}
-            aria-controls={`${formId}-panel`}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-          >
-            {isOpen ? <ChevronUp className="w-4 h-4" aria-hidden="true" /> : <ChevronDown className="w-4 h-4" aria-hidden="true" />}
-            {isOpen ? "Close" : "Edit Budgets"}
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => (isOpen ? setIsOpen(false) : openForm())}
+          aria-expanded={isOpen}
+          aria-controls={`${formId}-panel`}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+        >
+          {isOpen ? <ChevronUp className="w-4 h-4" aria-hidden="true" /> : <ChevronDown className="w-4 h-4" aria-hidden="true" />}
+          {isOpen ? "Close" : "Edit Budgets"}
+        </button>
       </div>
 
       <div aria-live="polite" aria-atomic="true" className="sr-only">
@@ -217,7 +215,7 @@ const BudgetSettings = () => {
         })}
       </div>
 
-      {isOpen && role === "admin" && form && (
+      {isOpen && form && (
         <div
           id={`${formId}-panel`}
           className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700"

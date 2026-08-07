@@ -41,34 +41,40 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* Welcome Section */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h2>
           <p className="text-gray-500 dark:text-gray-400 mt-1">Here's a summary of your financial activity.</p>
         </div>
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <SummaryCard
-            title="Total Balance"
-            amount={balance}
-            icon={Wallet}
-            color="text-blue-600 dark:text-blue-400"
-            type="currency"
-          />
-          <SummaryCard
-            title="Total Income"
-            amount={income}
-            icon={ArrowUpCircle}
-            color="text-green-600 dark:text-green-400"
-            type="currency"
-          />
-          <SummaryCard
-            title="Total Expenses"
-            amount={expenses}
-            icon={ArrowDownCircle}
-            color="text-red-600 dark:text-red-400"
-            type="currency"
-          />
+          <div className="animate-fade-in-up animation-delay-100 card-hover">
+            <SummaryCard
+              title="Total Balance"
+              amount={balance}
+              icon={Wallet}
+              color="text-blue-600 dark:text-blue-400"
+              type="currency"
+            />
+          </div>
+          <div className="animate-fade-in-up animation-delay-200 card-hover">
+            <SummaryCard
+              title="Total Income"
+              amount={income}
+              icon={ArrowUpCircle}
+              color="text-green-600 dark:text-green-400"
+              type="currency"
+            />
+          </div>
+          <div className="animate-fade-in-up animation-delay-300 card-hover">
+            <SummaryCard
+              title="Total Expenses"
+              amount={expenses}
+              icon={ArrowDownCircle}
+              color="text-red-600 dark:text-red-400"
+              type="currency"
+            />
+          </div>
         </div>
 
         <BudgetSettings />
